@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+{% load tz %}
+{% block title %}Index{% endblock title %}
+{% block content %}
+
+{% for a in articles  %}
+<ul>
+    <li>{{a.title}}</li>
+    <li>{{a.content}}</li>
+    <li>{{a.category.name}}</li>
+    <li><a href="{% url 'delete' a.id %}">delete</a></li>
+</ul>
+<h1>{% now "Y-m-d" %}</h1>
+
+{% endfor %}
+{% if request.user.is_authenticated %}
+<h1><a href="{% url 'logout' %}">logout</a></h1>
+{% endif %}
+
+{% endblock content %}
+
